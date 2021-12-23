@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody rb;
     public float speed;
+    private int score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,16 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("right") || Input.GetKey("d"))
         {
             rb.AddForce(speed * Time.deltaTime, 0, 0);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Pickup")
+        {
+            score++;
+            Debug.Log($"Score: {score}");
+            Destroy(other.gameObject);
         }
     }
 }
