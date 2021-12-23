@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public float speed;
     private int score = 0;
+    public int health = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,11 @@ public class PlayerController : MonoBehaviour
             score++;
             Debug.Log($"Score: {score}");
             Destroy(other.gameObject);
+        }
+        else if (other.tag == "Trap")
+        {
+            health--;
+            Debug.Log($"Health: {health}");
         }
     }
 }
